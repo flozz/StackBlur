@@ -105,12 +105,16 @@ function stackBlurImage( imageID, canvasID, radius, blurAlphaChannel )
 }
 
 
-function stackBlurCanvasRGBA( id, top_x, top_y, width, height, radius )
+function stackBlurCanvasRGBA( canvas, top_x, top_y, width, height, radius )
 {
     if ( isNaN(radius) || radius < 1 ) return;
     radius |= 0;
 
-    var canvas  = document.getElementById( id );
+    if (typeof(canvas) == "string")
+        var canvas  = document.getElementById( canvas );
+    else if (!canvas instanceof HTMLCanvasElement)
+        return;
+
     var context = canvas.getContext("2d");
     var imageData;
 
@@ -372,12 +376,16 @@ function stackBlurCanvasRGBA( id, top_x, top_y, width, height, radius )
 }
 
 
-function stackBlurCanvasRGB( id, top_x, top_y, width, height, radius )
+function stackBlurCanvasRGB( canvas, top_x, top_y, width, height, radius )
 {
     if ( isNaN(radius) || radius < 1 ) return;
     radius |= 0;
 
-    var canvas  = document.getElementById( id );
+    if (typeof(canvas) == "string")
+        var canvas  = document.getElementById( canvas );
+    else if (!canvas instanceof HTMLCanvasElement)
+        return;
+
     var context = canvas.getContext("2d");
     var imageData;
 

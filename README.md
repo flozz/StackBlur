@@ -12,23 +12,27 @@ Original source:
 
 ## Usage
 
-Image as source:
+**Image as source:**
 
 ```javascript
 stackBlurImage(sourceImageID, targetCanvasID, radius, blurAlphaChannel);
 ```
 
-RGBA Canvas as source:
+**RGBA Canvas as source:**
 
 ```javascript
-stackBlurCanvasRGBA(targetCanvasID, top_x, top_y, width, height, radius);
+stackBlurCanvasRGBA(targetCanvas, top_x, top_y, width, height, radius);
 ```
 
-RGB Canvas as source:
+  * `targetCanvas`: the `HTMLCanvasElement` or its `id`.
+
+**RGB Canvas as source:**
 
 ```javascript
-stackBlurCanvasRGB(targetCanvasID, top_x, top_y, width, height, radius);
+stackBlurCanvasRGB(targetCanvas, top_x, top_y, width, height, radius);
 ```
+
+  * `targetCanvas`: the `HTMLCanvasElement` or its `id`.
 
 
 ## Copying
