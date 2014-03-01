@@ -1,4 +1,4 @@
-# StackBlur.js - Fast and almost Gaussian blur
+# StackBlur.js - Fast blur
 
 StackBlur.js is a fast, almost Gaussian blur created by by Mario Klingemann.
 
