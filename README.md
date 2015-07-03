@@ -15,8 +15,13 @@ Original source:
 **Image as source:**
 
 ```javascript
-stackBlurImage(sourceImageID, targetCanvasID, radius, blurAlphaChannel);
+stackBlurImage(sourceImage, targetCanvas, radius, blurAlphaChannel);
 ```
+
+  * `sourceImage`: the `HTMLImageElement` or its `id`.
+  * `targetCanvas`: the `HTMLCanvasElement` or its `id`.
+  * `radius`: the radius of the blur.
+  * `blurAlphaChannel`: Set it to `true` if you want to blur a RGBA image (optional, default = `false`)
 
 **RGBA Canvas as source:**
 
@@ -25,6 +30,11 @@ stackBlurCanvasRGBA(targetCanvas, top_x, top_y, width, height, radius);
 ```
 
   * `targetCanvas`: the `HTMLCanvasElement` or its `id`.
+  * `top_x`: the horizontal coordinate of the top-left corner of the rectangle to blur.
+  * `top_y`: the vertical coordinate of the top-left corner of the rectangle to blur.
+  * `width`: the width of the rectangle to blur.
+  * `height`: the height of the rectangle to blur.
+  * `radius`: the radius of the blur.
 
 **RGB Canvas as source:**
 
@@ -33,6 +43,11 @@ stackBlurCanvasRGB(targetCanvas, top_x, top_y, width, height, radius);
 ```
 
   * `targetCanvas`: the `HTMLCanvasElement` or its `id`.
+  * `top_x`: the horizontal coordinate of the top-left corner of the rectangle to blur.
+  * `top_y`: the vertical coordinate of the top-left corner of the rectangle to blur.
+  * `width`: the width of the rectangle to blur.
+  * `height`: the height of the rectangle to blur.
+  * `radius`: the radius of the blur.
 
 
 ## Copying

@@ -78,14 +78,23 @@ var shg_table = [
     24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24 ];
 
 
-function stackBlurImage( imageID, canvasID, radius, blurAlphaChannel )
+function stackBlurImage( img, canvas, radius, blurAlphaChannel )
 {
-
-    var img = document.getElementById( imageID );
+    if (typeof(img) == "string") {
+        var img = document.getElementById( img );
+    }
+    else if (!img instanceof HTMLImageElement) {
+        return;
+    }
     var w = img.naturalWidth;
     var h = img.naturalHeight;
 
-    var canvas = document.getElementById( canvasID );
+    if (typeof(canvas) == "string") {
+        var canvas = document.getElementById( canvas );
+    }
+    else if (!canvas instanceof HTMLCanvasElement) {
+        return;
+    }
 
     canvas.style.width  = w + "px";
     canvas.style.height = h + "px";
@@ -99,9 +108,9 @@ function stackBlurImage( imageID, canvasID, radius, blurAlphaChannel )
     if ( isNaN(radius) || radius < 1 ) return;
 
     if ( blurAlphaChannel )
-        stackBlurCanvasRGBA( canvasID, 0, 0, w, h, radius );
+        stackBlurCanvasRGBA( canvas, 0, 0, w, h, radius );
     else
-        stackBlurCanvasRGB( canvasID, 0, 0, w, h, radius );
+        stackBlurCanvasRGB( canvas, 0, 0, w, h, radius );
 }
 
 
