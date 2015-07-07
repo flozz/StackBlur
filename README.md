@@ -1,6 +1,6 @@
 # StackBlur.js - Fast blur
 
-StackBlur.js is a fast, almost Gaussian blur created by by Mario Klingemann.
+StackBlur.js is a fast, almost Gaussian blur created by Mario Klingemann.
 
   * **More informations:** http://incubator.quasimondo.com/processing/fast_blur_deluxe.php
   * **Demo:** http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html
@@ -15,7 +15,7 @@ Original source:
 **Image as source:**
 
 ```javascript
-stackBlurImage(sourceImage, targetCanvas, radius, blurAlphaChannel);
+StackBlur.image(sourceImage, targetCanvas, radius, blurAlphaChannel);
 ```
 
   * `sourceImage`: the `HTMLImageElement` or its `id`.
@@ -26,7 +26,7 @@ stackBlurImage(sourceImage, targetCanvas, radius, blurAlphaChannel);
 **RGBA Canvas as source:**
 
 ```javascript
-stackBlurCanvasRGBA(targetCanvas, top_x, top_y, width, height, radius);
+StackBlur.canvasRGBA(targetCanvas, top_x, top_y, width, height, radius);
 ```
 
   * `targetCanvas`: the `HTMLCanvasElement` or its `id`.
@@ -39,7 +39,7 @@ stackBlurCanvasRGBA(targetCanvas, top_x, top_y, width, height, radius);
 **RGB Canvas as source:**
 
 ```javascript
-stackBlurCanvasRGB(targetCanvas, top_x, top_y, width, height, radius);
+StackBlur.canvasRGB(targetCanvas, top_x, top_y, width, height, radius);
 ```
 
   * `targetCanvas`: the `HTMLCanvasElement` or its `id`.

@@ -30,7 +30,7 @@
         <div>
             <input type="range" min="0" max="50" value="0" id="slider" />
         </div>
-        <script src="./StackBlur.js"></script>
+        <script src="dist/stackblur.js"></script>
         <script>
             // Canvas
             var canvas = document.getElementById("canvas");
@@ -57,7 +57,7 @@
             var slider = document.getElementById("slider");
             slider.addEventListener("change", function() {
                 cctx.drawImage(buff, 0, 0);
-                stackBlurCanvasRGB(canvas, 0, 0, canvas.width, canvas.height, slider.value);
+                StackBlur.canvasRGB(canvas, 0, 0, canvas.width, canvas.height, slider.value);
             }, false);
         </script>
     </body>

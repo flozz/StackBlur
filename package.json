@@ -1,0 +1,29 @@
+{
+  "name": "stackblur-canvas",
+  "version": "1.0.0",
+  "description": "Fast and almost Gaussian blur by Mario Klingemann",
+  "main": "src/stackblur.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flozz/StackBlur.git"
+  },
+  "keywords": [
+    "stackblur",
+    "blur",
+    "canvas",
+    "gaussian"
+  ],
+  "author": "Mario Klingemann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flozz/StackBlur/issues"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.8.0",
+    "grunt-contrib-uglify": "^0.9.1"
+  }
+}
