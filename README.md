@@ -1,4 +1,9 @@
-# StackBlur.js - Fast blur
+# StackBlur.js
+
+[![NPM Version](https://img.shields.io/npm/v/stackblur-canvas.svg)][pkg-npm]
+[![Bower](https://img.shields.io/bower/v/stackblur-canvas.svg)][pkg-bower]
+[![License](https://img.shields.io/npm/l/stackblur-canvas.svg)](https://github.com/flozz/StackBlur/blob/master/COPYING)
+
 
 StackBlur.js is a fast, almost Gaussian blur created by Mario Klingemann.
 
@@ -10,7 +15,52 @@ Original source:
   * http://www.quasimondo.com/StackBlurForCanvas/StackBlur.js
 
 
-## Usage
+## Getting Started
+
+### Standalone version
+
+To use the standalone version,
+
+download the [latest zip][dl-zip-master] from Github or clone the repository
+
+    git clone git@github.com:flozz/threadify.git
+
+and include the `dist/stackblur.js` or `dist/stackblur.min.js` file in your HTML page:
+
+```html
+<script src="StackBlur/dist/stackblur.js"></script>
+```
+
+### NPM / Browserify
+
+To use the [NPM package][pkg-npm],
+
+install the package
+
+    npm install --save stackblur-canvas
+
+and require it where needed
+
+```javascript
+var StackBlur = require("stackblur-canvas");
+```
+
+### Bower
+
+To use the [Bower package][pkg-bower],
+
+Install the package
+
+    bower install stackblur-canvas
+
+and include the `dist/stackblur.js` or `dist/stackblur.min.js` file in your HTML page:
+
+```html
+<script src="bower_components/stackblur-canvas/dist/stackblur.js"></script>
+```
+
+
+## API
 
 **Image as source:**
 
@@ -50,29 +100,17 @@ StackBlur.canvasRGB(targetCanvas, top_x, top_y, width, height, radius);
   * `radius`: the radius of the blur.
 
 
-## Copying
+## Hacking
 
-```
-Copyright (c) 2010 Mario Klingemann
+### Building
 
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
+This library is built using [Grunt][grunt]. If you change somthing in the `src/` folder, use the following command to re-build the files in the `dist/` folder:
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+    grunt
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-```
+
+
+[dl-zip-master]: https://github.com/flozz/StackBlur/archive/master.zip
+[pkg-npm]: https://www.npmjs.com/package/stackblur-canvas
+[pkg-bower]: http://bower.io/
+[grunt]: http://gruntjs.com/
