@@ -113,7 +113,7 @@ function processImage(img, canvas, radius, blurAlphaChannel)
         processCanvasRGB(canvas, 0, 0, w, h, radius);
 }
 
-function tryToGetImageDataFromCanvas(canvas, top_x, top_y, width, height)
+function getImageDataFromCanvas(canvas, top_x, top_y, width, height)
 {
     if (typeof(canvas) == 'string')
         var canvas  = document.getElementById(canvas);
@@ -153,7 +153,7 @@ function processCanvasRGBA(canvas, top_x, top_y, width, height, radius)
     if (isNaN(radius) || radius < 1) return;
     radius |= 0;
 
-    var imageData = tryToGetImageDataFromCanvas(canvas, top_x, top_y, width, height);
+    var imageData = getImageDataFromCanvas(canvas, top_x, top_y, width, height);
 
     imageData = processImageDataRGBA(imageData, top_x, top_y, width, height, radius);
 
@@ -400,7 +400,7 @@ function processCanvasRGB(canvas, top_x, top_y, width, height, radius)
     if (isNaN(radius) || radius < 1) return;
     radius |= 0;
 
-    var imageData = tryToGetImageDataFromCanvas(canvas, top_x, top_y, width, height);
+    var imageData = getImageDataFromCanvas(canvas, top_x, top_y, width, height);
     imageData = processImageDataRGB(imageData, top_x, top_y, width, height, radius);
 
     canvas.getContext('2d').putImageData(imageData, top_x, top_y);
