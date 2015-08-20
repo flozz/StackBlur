@@ -135,6 +135,12 @@ This library is built using [Grunt][grunt]. If you change somthing in the `src/`
     grunt
 
 
+## Changelog
+
+* **1.1.0:** Allow blur to be applied to ImageData directly (thanks @WebSeed)
+* **1.0.0:** First Release
+
+
 
 [dl-zip-master]: https://github.com/flozz/StackBlur/archive/master.zip
 [pkg-npm]: https://www.npmjs.com/package/stackblur-canvas
