@@ -23,7 +23,7 @@ To use the standalone version,
 
 download the [latest zip][dl-zip-master] from Github or clone the repository
 
-    git clone git@github.com:flozz/threadify.git
+    git clone git@github.com:flozz/StackBlur.git
 
 and include the `dist/stackblur.js` or `dist/stackblur.min.js` file in your HTML page:
 
