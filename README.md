@@ -137,6 +137,7 @@ This library is built using [Grunt][grunt]. If you change somthing in the `src/`
 
 ## Changelog
 
+* **1.2.1:** Includes built files in the NPM packgage
 * **1.2.0:** Remove alerts and obsolete `netscape.security.PrivilegeManager`
 * **1.1.0:** Allow blur to be applied to `ImageData` directly (thanks @WebSeed)
 * **1.0.0:** First Release
