@@ -83,7 +83,7 @@ function processImage(img, canvas, radius, blurAlphaChannel)
     if (typeof(img) == 'string') {
         var img = document.getElementById(img);
     }
-    else if (!img instanceof HTMLImageElement) {
+    else if (typeof HTMLImageElement !== 'undefined' && !img instanceof HTMLImageElement) {
         return;
     }
     var w = img.naturalWidth;
@@ -92,7 +92,7 @@ function processImage(img, canvas, radius, blurAlphaChannel)
     if (typeof(canvas) == 'string') {
         var canvas = document.getElementById(canvas);
     }
-    else if (!canvas instanceof HTMLCanvasElement) {
+    else if (typeof HTMLCanvasElement !== 'undefined' && !canvas instanceof HTMLCanvasElement) {
         return;
     }
 
@@ -117,7 +117,7 @@ function getImageDataFromCanvas(canvas, top_x, top_y, width, height)
 {
     if (typeof(canvas) == 'string')
         var canvas  = document.getElementById(canvas);
-    else if (!canvas instanceof HTMLCanvasElement)
+    else if (typeof HTMLCanvasElement !== 'undefined' && !canvas instanceof HTMLCanvasElement)
         return;
 
     var context = canvas.getContext('2d');
