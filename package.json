@@ -1,6 +1,6 @@
 {
   "name": "stackblur-canvas",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Fast and almost Gaussian blur by Mario Klingemann",
   "main": "src/stackblur.js",
   "scripts": {
