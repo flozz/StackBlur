@@ -1,19 +1,16 @@
 # StackBlur.js
 
 [![NPM Version](https://img.shields.io/npm/v/stackblur-canvas.svg)][pkg-npm]
-[![Bower](https://img.shields.io/bower/v/stackblur-canvas.svg)][pkg-bower]
 [![License](https://img.shields.io/npm/l/stackblur-canvas.svg)](https://github.com/flozz/StackBlur/blob/master/COPYING)
-
 
 StackBlur.js is a fast, almost Gaussian blur created by Mario Klingemann.
 
-  * **More informations:** http://incubator.quasimondo.com/processing/fast_blur_deluxe.php
-  * **Demo:** http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html
+  * **More informations:** <http://incubator.quasimondo.com/processing/fast_blur_deluxe.php>
+  * **Demo:** <http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html>
 
 Original source:
 
-  * http://www.quasimondo.com/StackBlurForCanvas/StackBlur.js
-
+  * <http://www.quasimondo.com/StackBlurForCanvas/StackBlur.js>
 
 ## Getting Started
 
@@ -23,7 +20,9 @@ To use the standalone version,
 
 download the [latest zip][dl-zip-master] from Github or clone the repository
 
-    git clone git@github.com:flozz/StackBlur.git
+```
+git clone git@github.com:flozz/StackBlur.git
+```
 
 and include the `dist/stackblur.js` or `dist/stackblur.min.js` file in your HTML page:
 
@@ -31,40 +30,44 @@ and include the `dist/stackblur.js` or `dist/stackblur.min.js` file in your HTML
 <script src="StackBlur/dist/stackblur.js"></script>
 ```
 
-### NPM / Browserify
+### Node
 
 To use the [NPM package][pkg-npm],
 
-install the package
+install the package:
 
-    npm install --save stackblur-canvas
+```
+npm install --save stackblur-canvas
+```
 
 and require it where needed
 
-```javascript
-var StackBlur = require("stackblur-canvas");
+```js
+const StackBlur = require('stackblur-canvas');
 ```
 
-### Bower
+### Browsers
 
-To use the [Bower package][pkg-bower],
+If you are only supporting modern browsers, you may use ES6 Modules directly:
 
-Install the package
-
-    bower install stackblur-canvas
-
-and include the `dist/stackblur.js` or `dist/stackblur.min.js` file in your HTML page:
-
-```html
-<script src="bower_components/stackblur-canvas/dist/stackblur.js"></script>
+```js
+import * as StackBlur from './node_modules/stackblur-canvas/dist/stackblur-es.min.js';
 ```
 
+Or, if you are using Rollup in your own project, use the [node-resolve](https://github.com/rollup/rollup-plugin-node-resolve) plugin,
+and import by just referencing the module:
+
+```js
+import * as StackBlur from 'stackblur-canvas';
+```
 
 ## API
 
+See also the docs in [docs/jsdoc](./docs/jsdoc/index.html).
+
 **Image as source:**
 
-```javascript
+```js
 StackBlur.image(sourceImage, targetCanvas, radius, blurAlphaChannel);
 ```
 
@@ -75,7 +78,7 @@ StackBlur.image(sourceImage, targetCanvas, radius, blurAlphaChannel);
 
 **RGBA Canvas as source:**
 
-```javascript
+```js
 StackBlur.canvasRGBA(targetCanvas, top_x, top_y, width, height, radius);
 ```
 
@@ -88,7 +91,7 @@ StackBlur.canvasRGBA(targetCanvas, top_x, top_y, width, height, radius);
 
 **RGB Canvas as source:**
 
-```javascript
+```js
 StackBlur.canvasRGB(targetCanvas, top_x, top_y, width, height, radius);
 ```
 
@@ -101,7 +104,7 @@ StackBlur.canvasRGB(targetCanvas, top_x, top_y, width, height, radius);
 
 **RGBA ImageData as source:**
 
-```javascript
+```js
 StackBlur.imageDataRGBA(imageData, top_x, top_y, width, height, radius);
 ```
 
@@ -114,7 +117,7 @@ StackBlur.imageDataRGBA(imageData, top_x, top_y, width, height, radius);
 
 **RGB ImageData as source:**
 
-```javascript
+```js
 StackBlur.imageDataRGB(imageData, top_x, top_y, width, height, radius);
 ```
 
@@ -130,24 +133,13 @@ StackBlur.imageDataRGB(imageData, top_x, top_y, width, height, radius);
 
 ### Building
 
-This library is built using [Grunt][grunt]. If you change somthing in the `src/` folder, use the following command to re-build the files in the `dist/` folder:
+This library is built using [Rollup](https://rollupjs.org/guide/en).
+If you change something in the `src/` folder, use the following command
+to re-build the files in the `dist/` folder:
 
-    grunt
-
-
-## Changelog
-
-* **1.4.1:** Moves `grunt-cli` to `devDependencies` (#23)
-* **1.4.0:** Allows the lib to be used with node-canvas
-* **1.3.0:** TypeScript typings added
-* **1.2.1:** Includes built files in the NPM packgage
-* **1.2.0:** Remove alerts and obsolete `netscape.security.PrivilegeManager`
-* **1.1.0:** Allow blur to be applied to `ImageData` directly (thanks @WebSeed)
-* **1.0.0:** First Release
-
+`npm run rollup`
 
 
 [dl-zip-master]: https://github.com/flozz/StackBlur/archive/master.zip
 [pkg-npm]: https://www.npmjs.com/package/stackblur-canvas
-[pkg-bower]: http://bower.io/
 [grunt]: http://gruntjs.com/

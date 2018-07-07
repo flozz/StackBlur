@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: stackblur.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: stackblur.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
 * StackBlur - a fast almost Gaussian Blur For Canvas
 *
 * In case you find this class useful - especially in commercial projects -
@@ -107,7 +135,7 @@ function processImage (img, canvas, radius, blurAlphaChannel) {
     context.clearRect(0, 0, w, h);
     context.drawImage(img, 0, 0);
 
-    if (isNaN(radius) || radius < 1) { return; }
+    if (isNaN(radius) || radius &lt; 1) { return; }
 
     if (blurAlphaChannel) {
         processCanvasRGBA(canvas, 0, 0, w, h, radius);
@@ -152,7 +180,7 @@ function getImageDataFromCanvas (canvas, topX, topY, width, height) {
  * @returns {undefined}
  */
 function processCanvasRGBA (canvas, topX, topY, width, height, radius) {
-    if (isNaN(radius) || radius < 1) { return; }
+    if (isNaN(radius) || radius &lt; 1) { return; }
     radius |= 0;
 
     let imageData = getImageDataFromCanvas(canvas, topX, topY, width, height);
@@ -180,7 +208,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
         pr, pg, pb, pa, rbs;
 
     const div = radius + radius + 1;
-    // const w4 = width << 2;
+    // const w4 = width &lt;&lt; 2;
     const widthMinus1 = width - 1;
     const heightMinus1 = height - 1;
     const radiusPlus1 = radius + 1;
@@ -189,7 +217,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
     const stackStart = new BlurStack();
     let stack = stackStart;
     let stackEnd;
-    for (i = 1; i < div; i++) {
+    for (i = 1; i &lt; div; i++) {
         stack = stack.next = new BlurStack();
         if (i === radiusPlus1) {
             stackEnd = stack;
@@ -204,7 +232,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
     const mulSum = mulTable[radius];
     const shgSum = shgTable[radius];
 
-    for (y = 0; y < height; y++) {
+    for (y = 0; y &lt; height; y++) {
         rInSum = gInSum = bInSum = aInSum = rSum = gSum = bSum = aSum = 0;
 
         rOutSum = radiusPlus1 * (pr = pixels[yi]);
@@ -219,7 +247,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
 
         stack = stackStart;
 
-        for (i = 0; i < radiusPlus1; i++) {
+        for (i = 0; i &lt; radiusPlus1; i++) {
             stack.r = pr;
             stack.g = pg;
             stack.b = pb;
@@ -227,8 +255,8 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
             stack = stack.next;
         }
 
-        for (i = 1; i < radiusPlus1; i++) {
-            p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
+        for (i = 1; i &lt; radiusPlus1; i++) {
+            p = yi + ((widthMinus1 &lt; i ? widthMinus1 : i) &lt;&lt; 2);
             rSum += (stack.r = (pr = pixels[p])) * (rbs = radiusPlus1 - i);
             gSum += (stack.g = (pg = pixels[p + 1])) * rbs;
             bSum += (stack.b = (pb = pixels[p + 2])) * rbs;
@@ -244,7 +272,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
 
         stackIn = stackStart;
         stackOut = stackEnd;
-        for (x = 0; x < width; x++) {
+        for (x = 0; x &lt; width; x++) {
             pixels[yi + 3] = pa = (aSum * mulSum) >> shgSum;
             if (pa !== 0) {
                 pa = 255 / pa;
@@ -265,7 +293,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
             bOutSum -= stackIn.b;
             aOutSum -= stackIn.a;
 
-            p = (yw + ((p = x + radius + 1) < widthMinus1 ? p : widthMinus1)) << 2;
+            p = (yw + ((p = x + radius + 1) &lt; widthMinus1 ? p : widthMinus1)) &lt;&lt; 2;
 
             rInSum += (stackIn.r = pixels[p]);
             gInSum += (stackIn.g = pixels[p + 1]);
@@ -296,10 +324,10 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
         yw += width;
     }
 
-    for (x = 0; x < width; x++) {
+    for (x = 0; x &lt; width; x++) {
         gInSum = bInSum = aInSum = rInSum = gSum = bSum = aSum = rSum = 0;
 
-        yi = x << 2;
+        yi = x &lt;&lt; 2;
         rOutSum = radiusPlus1 * (pr = pixels[yi]);
         gOutSum = radiusPlus1 * (pg = pixels[yi + 1]);
         bOutSum = radiusPlus1 * (pb = pixels[yi + 2]);
@@ -312,7 +340,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
 
         stack = stackStart;
 
-        for (i = 0; i < radiusPlus1; i++) {
+        for (i = 0; i &lt; radiusPlus1; i++) {
             stack.r = pr;
             stack.g = pg;
             stack.b = pb;
@@ -322,8 +350,8 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
 
         yp = width;
 
-        for (i = 1; i <= radius; i++) {
-            yi = (yp + x) << 2;
+        for (i = 1; i &lt;= radius; i++) {
+            yi = (yp + x) &lt;&lt; 2;
 
             rSum += (stack.r = (pr = pixels[yi])) * (rbs = radiusPlus1 - i);
             gSum += (stack.g = (pg = pixels[yi + 1])) * rbs;
@@ -337,7 +365,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
 
             stack = stack.next;
 
-            if (i < heightMinus1) {
+            if (i &lt; heightMinus1) {
                 yp += width;
             }
         }
@@ -345,8 +373,8 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
         yi = x;
         stackIn = stackStart;
         stackOut = stackEnd;
-        for (y = 0; y < height; y++) {
-            p = yi << 2;
+        for (y = 0; y &lt; height; y++) {
+            p = yi &lt;&lt; 2;
             pixels[p + 3] = pa = (aSum * mulSum) >> shgSum;
             if (pa > 0) {
                 pa = 255 / pa;
@@ -367,7 +395,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
             bOutSum -= stackIn.b;
             aOutSum -= stackIn.a;
 
-            p = (x + (((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) * width)) << 2;
+            p = (x + (((p = y + radiusPlus1) &lt; heightMinus1 ? p : heightMinus1) * width)) &lt;&lt; 2;
 
             rSum += (rInSum += (stackIn.r = pixels[p]));
             gSum += (gInSum += (stackIn.g = pixels[p + 1]));
@@ -404,7 +432,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
  * @returns {undefined}
  */
 function processCanvasRGB (canvas, topX, topY, width, height, radius) {
-    if (isNaN(radius) || radius < 1) { return; }
+    if (isNaN(radius) || radius &lt; 1) { return; }
     radius |= 0;
 
     let imageData = getImageDataFromCanvas(canvas, topX, topY, width, height);
@@ -431,7 +459,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
         pr, pg, pb, rbs;
 
     const div = radius + radius + 1;
-    // const w4 = width << 2;
+    // const w4 = width &lt;&lt; 2;
     const widthMinus1 = width - 1;
     const heightMinus1 = height - 1;
     const radiusPlus1 = radius + 1;
@@ -440,7 +468,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
     const stackStart = new BlurStack();
     let stack = stackStart;
     let stackEnd;
-    for (i = 1; i < div; i++) {
+    for (i = 1; i &lt; div; i++) {
         stack = stack.next = new BlurStack();
         if (i === radiusPlus1) {
             stackEnd = stack;
@@ -455,7 +483,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
     const mulSum = mulTable[radius];
     const shgSum = shgTable[radius];
 
-    for (y = 0; y < height; y++) {
+    for (y = 0; y &lt; height; y++) {
         rInSum = gInSum = bInSum = rSum = gSum = bSum = 0;
 
         rOutSum = radiusPlus1 * (pr = pixels[yi]);
@@ -468,15 +496,15 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
 
         stack = stackStart;
 
-        for (i = 0; i < radiusPlus1; i++) {
+        for (i = 0; i &lt; radiusPlus1; i++) {
             stack.r = pr;
             stack.g = pg;
             stack.b = pb;
             stack = stack.next;
         }
 
-        for (i = 1; i < radiusPlus1; i++) {
-            p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
+        for (i = 1; i &lt; radiusPlus1; i++) {
+            p = yi + ((widthMinus1 &lt; i ? widthMinus1 : i) &lt;&lt; 2);
             rSum += (stack.r = (pr = pixels[p])) * (rbs = radiusPlus1 - i);
             gSum += (stack.g = (pg = pixels[p + 1])) * rbs;
             bSum += (stack.b = (pb = pixels[p + 2])) * rbs;
@@ -490,7 +518,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
 
         stackIn = stackStart;
         stackOut = stackEnd;
-        for (x = 0; x < width; x++) {
+        for (x = 0; x &lt; width; x++) {
             pixels[yi] = (rSum * mulSum) >> shgSum;
             pixels[yi + 1] = (gSum * mulSum) >> shgSum;
             pixels[yi + 2] = (bSum * mulSum) >> shgSum;
@@ -503,7 +531,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
             gOutSum -= stackIn.g;
             bOutSum -= stackIn.b;
 
-            p = (yw + ((p = x + radius + 1) < widthMinus1 ? p : widthMinus1)) << 2;
+            p = (yw + ((p = x + radius + 1) &lt; widthMinus1 ? p : widthMinus1)) &lt;&lt; 2;
 
             rInSum += (stackIn.r = pixels[p]);
             gInSum += (stackIn.g = pixels[p + 1]);
@@ -530,10 +558,10 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
         yw += width;
     }
 
-    for (x = 0; x < width; x++) {
+    for (x = 0; x &lt; width; x++) {
         gInSum = bInSum = rInSum = gSum = bSum = rSum = 0;
 
-        yi = x << 2;
+        yi = x &lt;&lt; 2;
         rOutSum = radiusPlus1 * (pr = pixels[yi]);
         gOutSum = radiusPlus1 * (pg = pixels[yi + 1]);
         bOutSum = radiusPlus1 * (pb = pixels[yi + 2]);
@@ -544,7 +572,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
 
         stack = stackStart;
 
-        for (i = 0; i < radiusPlus1; i++) {
+        for (i = 0; i &lt; radiusPlus1; i++) {
             stack.r = pr;
             stack.g = pg;
             stack.b = pb;
@@ -553,8 +581,8 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
 
         yp = width;
 
-        for (i = 1; i <= radius; i++) {
-            yi = (yp + x) << 2;
+        for (i = 1; i &lt;= radius; i++) {
+            yi = (yp + x) &lt;&lt; 2;
 
             rSum += (stack.r = (pr = pixels[yi])) * (rbs = radiusPlus1 - i);
             gSum += (stack.g = (pg = pixels[yi + 1])) * rbs;
@@ -566,7 +594,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
 
             stack = stack.next;
 
-            if (i < heightMinus1) {
+            if (i &lt; heightMinus1) {
                 yp += width;
             }
         }
@@ -574,8 +602,8 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
         yi = x;
         stackIn = stackStart;
         stackOut = stackEnd;
-        for (y = 0; y < height; y++) {
-            p = yi << 2;
+        for (y = 0; y &lt; height; y++) {
+            p = yi &lt;&lt; 2;
             pixels[p] = (rSum * mulSum) >> shgSum;
             pixels[p + 1] = (gSum * mulSum) >> shgSum;
             pixels[p + 2] = (bSum * mulSum) >> shgSum;
@@ -588,7 +616,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
             gOutSum -= stackIn.g;
             bOutSum -= stackIn.b;
 
-            p = (x + (((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) * width)) << 2;
+            p = (x + (((p = y + radiusPlus1) &lt; heightMinus1 ? p : heightMinus1) * width)) &lt;&lt; 2;
 
             rSum += (rInSum += (stackIn.r = pixels[p]));
             gSum += (gInSum += (stackIn.g = pixels[p + 1]));
@@ -653,3 +681,26 @@ export {
     */
     processImageDataRGB as imageDataRGB
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-StackBlur.html">StackBlur</a></li></ul><h3>Classes</h3><ul><li><a href="module-StackBlur.BlurStack.html">BlurStack</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Nov 05 2018 22:32:12 GMT+0800 (China Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

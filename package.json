@@ -1,10 +1,16 @@
 {
   "name": "stackblur-canvas",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "Fast and almost Gaussian blur by Mario Klingemann",
-  "main": "src/stackblur.js",
+  "main": "dist/stackblur.js",
+  "module": "dist/stackblur-es.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "opn http://localhost:8081/demo/ && static -p 8081",
+    "eslint": "eslint .",
+    "rollup": "rollup -c",
+    "open-docs": "npm run docs && opn http://localhost:8081/docs/jsdoc/ && static -p 8081",
+    "docs": "rm -rf docs/jsdoc/*;jsdoc --pedantic -c docs/jsdoc-config.json src",
+    "test": "npm run eslint && npm run rollup && echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,15 +23,30 @@
     "gaussian"
   ],
   "author": "Mario Klingemann",
+  "homepage": "http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html",
+  "contributors": [
+    "Brett Zamir"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/flozz/StackBlur/issues"
   },
+  "engines": {},
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-browserify": "^3.8.0",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-uglify": "^0.9.1"
+    "@babel/core": "^7.1.2",
+    "eslint": "5.8.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "8.0.0",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-standard": "4.0.0",
+    "jsdoc": "^3.5.5",
+    "node-static": "^0.7.11",
+    "opn-cli": "^3.1.0",
+    "rollup": "0.67.0",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-re": "^1.0.7",
+    "rollup-plugin-terser": "^3.0.0"
   },
   "dependencies": {}
 }
