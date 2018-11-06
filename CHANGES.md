@@ -1,5 +1,12 @@
 # StackBlur CHANGES
 
+## ?
+
+- Enhancement: Throw descriptive `TypeError` rather than silently returning
+    upon `processCanvasRGB`/`processCanvasRGBA` methods not supplying proper
+    canvas (dependent methods will throw anyways, so shouldn't be a
+    breaking change)
+
 ## 2.0.0
 
 - Breaking change: Remove now deprecated Bower

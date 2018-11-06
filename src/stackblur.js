@@ -129,8 +129,8 @@ function getImageDataFromCanvas (canvas, topX, topY, width, height) {
     if (typeof canvas === 'string') {
         canvas = document.getElementById(canvas);
     }
-    if (!canvas || !('getContext' in canvas)) {
-        return;
+    if (!canvas || typeof canvas !== 'object' || !('getContext' in canvas)) {
+        throw new TypeError('Expecting canvas with `getContext` method in processCanvasRGB(A) calls!');
     }
 
     const context = canvas.getContext('2d');
