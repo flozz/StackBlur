@@ -122,7 +122,7 @@ function processImage (img, canvas, radius, blurAlphaChannel) {
  * @param {Integer} topY
  * @param {Integer} width
  * @param {Integer} height
- * @throws {Error}
+ * @throws {Error|TypeError}
  * @returns {ImageData} See {@link https://html.spec.whatwg.org/multipage/canvas.html#imagedata}
  */
 function getImageDataFromCanvas (canvas, topX, topY, width, height) {

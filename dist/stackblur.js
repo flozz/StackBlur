@@ -97,7 +97,7 @@
      * @param {Integer} topY
      * @param {Integer} width
      * @param {Integer} height
-     * @throws {Error}
+     * @throws {Error|TypeError}
      * @returns {ImageData} See {@link https://html.spec.whatwg.org/multipage/canvas.html#imagedata}
      */
 
@@ -107,8 +107,8 @@
         canvas = document.getElementById(canvas);
       }
 
-      if (!canvas || !('getContext' in canvas)) {
-        return;
+      if (!canvas || typeof canvas !== 'object' || !('getContext' in canvas)) {
+        throw new TypeError('Expecting canvas with `getContext` method in processCanvasRGB(A) calls!');
       }
 
       const context = canvas.getContext('2d');
