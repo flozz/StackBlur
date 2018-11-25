@@ -1,11 +1,12 @@
 # StackBlur CHANGES
 
-## ?
+## 2.1.0
 
 - Enhancement: Throw descriptive `TypeError` rather than silently returning
     upon `processCanvasRGB`/`processCanvasRGBA` methods not supplying proper
     canvas (dependent methods will throw anyways, so shouldn't be a
     breaking change)
+- Enhancement: Update TypeScript definition (@Jose Peleteiro)
 
 ## 2.0.0
 
