@@ -1,10 +1,14 @@
 {
   "name": "stackblur-canvas",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Fast and almost Gaussian blur by Mario Klingemann",
   "main": "dist/stackblur.js",
   "module": "dist/stackblur-es.js",
+  "browserslist": {
+    "target": "cover 100%"
+  },
   "scripts": {
+    "prepublishOnly": "yarn",
     "start": "opn http://localhost:8081/demo/ && static -p 8081",
     "eslint": "eslint .",
     "rollup": "rollup -c",
@@ -33,8 +37,9 @@
   },
   "engines": {},
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "eslint": "5.8.0",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "eslint": "5.10.0",
     "eslint-config-standard": "12.0.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-node": "8.0.0",
@@ -42,9 +47,9 @@
     "eslint-plugin-standard": "4.0.0",
     "jsdoc": "^3.5.5",
     "node-static": "^0.7.11",
-    "opn-cli": "^3.1.0",
-    "rollup": "0.67.0",
-    "rollup-plugin-babel": "^4.0.3",
+    "opn-cli": "^4.0.0",
+    "rollup": "0.67.4",
+    "rollup-plugin-babel": "^4.1.0",
     "rollup-plugin-re": "^1.0.7",
     "rollup-plugin-terser": "^3.0.0"
   },

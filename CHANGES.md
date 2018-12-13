@@ -1,5 +1,12 @@
 # StackBlur CHANGES
 
+## 2.2.0
+
+- Build fix: Target 100% coverage
+- Refactoring (minor): `x + x` -> `2 * x`
+- npm Add prepublishOnly script for yarn
+- npm: Update devDeps (no impact on build)
+
 ## 2.1.0
 
 - Enhancement: Throw descriptive `TypeError` rather than silently returning

@@ -179,7 +179,7 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
         rInSum, gInSum, bInSum, aInSum,
         pr, pg, pb, pa, rbs;
 
-    const div = radius + radius + 1;
+    const div = 2 * radius + 1;
     // const w4 = width << 2;
     const widthMinus1 = width - 1;
     const heightMinus1 = height - 1;
@@ -430,7 +430,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
         rInSum, gInSum, bInSum,
         pr, pg, pb, rbs;
 
-    const div = radius + radius + 1;
+    const div = 2 * radius + 1;
     // const w4 = width << 2;
     const widthMinus1 = width - 1;
     const heightMinus1 = height - 1;
