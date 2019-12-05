@@ -1,5 +1,12 @@
 # StackBlur CHANGES
 
+## ?
+
+- Build: Update build files per latest devDeps
+- npm: Remove `package-lock.json` in favor of `yarn.lock`
+- npm: Move from deprecated `opn-cli` to `open-cli`
+- npm: Update devDeps (except jsdoc which seems to still have a problem with ESM exports: <https://github.com/jsdoc/jsdoc/issues/1644>)
+
 ## 2.2.0
 
 - Build fix: Target 100% coverage

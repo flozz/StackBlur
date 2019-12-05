@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.StackBlur = {})));
+  (global = global || self, factory(global.StackBlur = {}));
 }(this, (function (exports) { 'use strict';
 
   function _typeof(obj) {
@@ -572,11 +572,11 @@
   };
 
   exports.BlurStack = BlurStack;
-  exports.image = processImage;
-  exports.canvasRGBA = processCanvasRGBA;
   exports.canvasRGB = processCanvasRGB;
-  exports.imageDataRGBA = processImageDataRGBA;
+  exports.canvasRGBA = processCanvasRGBA;
+  exports.image = processImage;
   exports.imageDataRGB = processImageDataRGB;
+  exports.imageDataRGBA = processImageDataRGBA;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

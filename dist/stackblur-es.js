@@ -565,4 +565,4 @@ var BlurStack = function BlurStack() {
   this.next = null;
 };
 
-export { BlurStack, processImage as image, processCanvasRGBA as canvasRGBA, processCanvasRGB as canvasRGB, processImageDataRGBA as imageDataRGBA, processImageDataRGB as imageDataRGB };
+export { BlurStack, processCanvasRGB as canvasRGB, processCanvasRGBA as canvasRGBA, processImage as image, processImageDataRGB as imageDataRGB, processImageDataRGBA as imageDataRGBA };

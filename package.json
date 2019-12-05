@@ -9,10 +9,10 @@
   },
   "scripts": {
     "prepublishOnly": "yarn",
-    "start": "opn http://localhost:8081/demo/ && static -p 8081",
+    "start": "open-cli http://localhost:8081/demo/ && static -p 8081",
     "eslint": "eslint .",
     "rollup": "rollup -c",
-    "open-docs": "npm run docs && opn http://localhost:8081/docs/jsdoc/ && static -p 8081",
+    "open-docs": "npm run docs && open-cli http://localhost:8081/docs/jsdoc/ && static -p 8081",
     "docs": "rm -rf docs/jsdoc/*;jsdoc --pedantic -c docs/jsdoc-config.json src",
     "test": "npm run eslint && npm run rollup && echo \"Error: no test specified\" && exit 1"
   },
@@ -37,21 +37,22 @@
   },
   "engines": {},
   "devDependencies": {
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "eslint": "5.10.0",
-    "eslint-config-standard": "12.0.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-node": "8.0.0",
-    "eslint-plugin-promise": "4.0.1",
-    "eslint-plugin-standard": "4.0.0",
-    "jsdoc": "^3.5.5",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "eslint": "6.7.2",
+    "eslint-config-standard": "14.1.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-node": "10.0.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "jsdoc": "3.5.5",
     "node-static": "^0.7.11",
-    "opn-cli": "^4.0.0",
-    "rollup": "0.67.4",
-    "rollup-plugin-babel": "^4.1.0",
+    "rollup": "1.27.8",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-re": "^1.0.7",
-    "rollup-plugin-terser": "^3.0.0"
+    "rollup-plugin-terser": "^5.1.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "open-cli": "^5.0.0"
+  }
 }
