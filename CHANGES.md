@@ -3,7 +3,14 @@
 ## ?
 
 - Build: Update build files per latest devDeps
+- Linting (ESLint): Switch to ash-nazg/sauron-node
+- Linting (ESLint): Lint MD, HTML
+- Linting (ESLint): Switch to 2 sp. indent, fix max-len
+- Linting (ESLint): Prefer `document.querySelector` in demo
+- Linting (ESLint): Add a recommended extension (js) to eslintrc
+- Maintenance: Add `.editorconfig`
 - npm: Remove `package-lock.json` in favor of `yarn.lock`
+- npm: Avoid bundling `rollup.config.js`
 - npm: Move from deprecated `opn-cli` to `open-cli`
 - npm: Update devDeps (except jsdoc which seems to still have a problem with ESM exports: <https://github.com/jsdoc/jsdoc/issues/1644>)
 

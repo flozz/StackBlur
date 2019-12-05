@@ -1,7 +1,7 @@
 // Canvas
 import * as StackBlur from '../src/stackblur.js';
 
-const canvas = document.getElementById('canvas');
+const canvas = document.querySelector('#canvas');
 const cctx = canvas.getContext('2d');
 const buff = document.createElement('canvas');
 buff.width = canvas.width;
@@ -22,8 +22,10 @@ bctx.fill();
 cctx.drawImage(buff, 0, 0);
 
 // Slider
-const slider = document.getElementById('slider');
+const slider = document.querySelector('#slider');
 slider.addEventListener('change', function () {
-    cctx.drawImage(buff, 0, 0);
-    StackBlur.canvasRGB(canvas, 0, 0, canvas.width, canvas.height, slider.value);
+  cctx.drawImage(buff, 0, 0);
+  StackBlur.canvasRGB(
+    canvas, 0, 0, canvas.width, canvas.height, slider.value
+  );
 }, false);

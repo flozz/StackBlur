@@ -51,7 +51,8 @@ const StackBlur = require('stackblur-canvas');
 If you are only supporting modern browsers, you may use ES6 Modules directly:
 
 ```js
-import * as StackBlur from './node_modules/stackblur-canvas/dist/stackblur-es.min.js';
+import * as StackBlur from
+  './node_modules/stackblur-canvas/dist/stackblur-es.min.js';
 ```
 
 Or, if you are using Rollup in your own project, use the [node-resolve](https://github.com/rollup/rollup-plugin-node-resolve) plugin,
