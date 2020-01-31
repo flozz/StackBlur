@@ -28,4 +28,4 @@ slider.addEventListener('change', function () {
   StackBlur.canvasRGB(
     canvas, 0, 0, canvas.width, canvas.height, slider.value
   );
-}, false);
+});
