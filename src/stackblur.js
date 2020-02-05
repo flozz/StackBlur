@@ -7,7 +7,8 @@
 * mario@quasimondo.de
 *
 * Or support me on flattr:
-* {@link https://flattr.com/thing/72791/StackBlur-a-fast-almost-Gaussian-Blur-Effect-for-CanvasJavascript}
+* {@link https://flattr.com/thing/72791/StackBlur-a-fast-almost-Gaussian-Blur-Effect-for-CanvasJavascript}.
+*
 * @module StackBlur
 * @author Mario Klingemann
 * Contact: mario@quasimondo.com
@@ -638,6 +639,9 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
  *
  */
 export class BlurStack {
+  /**
+   * Set properties.
+   */
   constructor () {
     this.r = 0;
     this.g = 0;

@@ -37,5 +37,6 @@ module.exports = {
     }
   }],
   rules: {
+    'jsdoc/require-returns': ['error', {exemptedBy: ['see']}]
   }
 };
