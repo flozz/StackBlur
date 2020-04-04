@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   extends: ['ash-nazg/sauron-node'],
   parserOptions: {
@@ -20,7 +22,7 @@ module.exports = {
       imageData: true,
       sourceImage: true,
       targetCanvas: true,
-      blurAlphaChannel: true,
+      blurAlphaChannel: true
     },
     rules: {
       'import/unambiguous': 0,
@@ -30,10 +32,17 @@ module.exports = {
         ignore: ['stackblur-canvas']
       }],
       'node/no-missing-require': ['error', {
-        allowModules: ['stackblur-canvas'],
+        allowModules: ['stackblur-canvas']
       }],
       'no-shadow': 0,
       'no-unused-vars': ['error', {varsIgnorePattern: 'StackBlur'}]
+    }
+  }, {
+    files: '.*.js',
+    extends: ['plugin:node/recommended-script'],
+    rules: {
+      'import/unambiguous': 0,
+      'import/no-commonjs': 0
     }
   }],
   rules: {

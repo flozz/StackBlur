@@ -4,7 +4,7 @@
 
 - Build: Update build files per latest devDeps
 - Linting (ESLint): Switch to ash-nazg/sauron-node
-- Linting (ESLint): Lint MD, HTML
+- Linting (ESLint): Lint MD, HTML, hidden files
 - Linting (ESLint): Switch to 2 sp. indent, fix max-len
 - Linting (ESLint): Prefer `document.querySelector` in demo
 - Linting (ESLint): Add a recommended extension (js) to eslintrc
