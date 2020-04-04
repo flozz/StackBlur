@@ -6,7 +6,7 @@
 StackBlur.js is a fast, almost Gaussian blur created by Mario Klingemann.
 
   * **More informations:** <http://incubator.quasimondo.com/processing/fast_blur_deluxe.php>
-  * **Algorithm:** <http://underdestruction.com/2004/02/25/stackblur-2004/>
+  * **Algorithm:** <https://medium.com/better-programming/blurring-image-algorithm-example-in-android-cec81911cd5e>
   * **Demo:** <http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html>
 
 Original source:
