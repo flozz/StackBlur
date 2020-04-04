@@ -9,9 +9,11 @@
 - Linting (ESLint): Prefer `document.querySelector` in demo
 - Linting (ESLint): Add a recommended extension (js) to eslintrc
 - Maintenance: Add `.editorconfig`
+- Mainenance: Use `.json` extension on `.babelrc`
 - npm: Remove `package-lock.json` in favor of `yarn.lock`
 - npm: Avoid bundling `rollup.config.js`
 - npm: Move from deprecated `opn-cli` to `open-cli`
+- npm: Add valid `engines` (pointing to minimum Node version until may confirm)
 - npm: Update devDeps (except jsdoc which seems to still have a problem with ESM exports: <https://github.com/jsdoc/jsdoc/issues/1644>)
 
 ## 2.2.0

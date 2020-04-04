@@ -37,6 +37,12 @@ module.exports = {
     }
   }],
   rules: {
-    'jsdoc/require-returns': ['error', {exemptedBy: ['see']}]
+    'jsdoc/require-returns': ['error', {exemptedBy: ['see']}],
+    // Handled by Babel
+    'node/no-unsupported-features/es-syntax': 0,
+
+    // Would be good, but as not supported in older Node and browsers,
+    //   would need polyfill for `Number.isNaN`
+    'unicorn/prefer-number-properties': 0
   }
 };
