@@ -1,6 +1,6 @@
 # StackBlur CHANGES
 
-## ?
+## 2.3.0
 
 - Build: Update build files per latest devDeps
 - Linting (ESLint): Switch to ash-nazg/sauron-node
@@ -14,7 +14,8 @@
 - npm: Avoid bundling `rollup.config.js`
 - npm: Move from deprecated `opn-cli` to `open-cli`
 - npm: Add valid `engines` (pointing to minimum Node version until may confirm)
-- npm: Update devDeps (except jsdoc which seems to still have a problem with ESM exports: <https://github.com/jsdoc/jsdoc/issues/1644>)
+- npm: Update devDeps (except jsdoc which seems to still have a problem
+    with ESM exports: <https://github.com/jsdoc/jsdoc/issues/1644>)
 
 ## 2.2.0
 
