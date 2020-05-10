@@ -2,3 +2,5 @@ demo
 
 yarn.lock
 rollup.config.js
+.ncurc.js
+lgtm.yml
