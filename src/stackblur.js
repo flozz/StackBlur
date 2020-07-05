@@ -184,11 +184,6 @@ function processCanvasRGBA (canvas, topX, topY, width, height, radius) {
 function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
   const pixels = imageData.data;
 
-  let x, y, i, p, yp, yi, yw, rSum, gSum, bSum, aSum,
-    rOutSum, gOutSum, bOutSum, aOutSum,
-    rInSum, gInSum, bInSum, aInSum,
-    pr, pg, pb, pa, rbs;
-
   const div = 2 * radius + 1;
   // const w4 = width << 2;
   const widthMinus1 = width - 1;
@@ -199,37 +194,31 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
   const stackStart = new BlurStack();
   let stack = stackStart;
   let stackEnd;
-  for (i = 1; i < div; i++) {
+  for (let i = 1; i < div; i++) {
     stack = stack.next = new BlurStack();
     if (i === radiusPlus1) {
       stackEnd = stack;
     }
   }
   stack.next = stackStart;
-  let stackIn = null;
-  let stackOut = null;
 
-  yw = yi = 0;
+  let stackIn = null,
+    stackOut = null,
+    yw = 0,
+    yi = 0;
 
   const mulSum = mulTable[radius];
   const shgSum = shgTable[radius];
 
-  for (y = 0; y < height; y++) {
-    rInSum = gInSum = bInSum = aInSum = rSum = gSum = bSum = aSum = 0;
-
-    rOutSum = radiusPlus1 * (pr = pixels[yi]);
-    gOutSum = radiusPlus1 * (pg = pixels[yi + 1]);
-    bOutSum = radiusPlus1 * (pb = pixels[yi + 2]);
-    aOutSum = radiusPlus1 * (pa = pixels[yi + 3]);
-
-    rSum += sumFactor * pr;
-    gSum += sumFactor * pg;
-    bSum += sumFactor * pb;
-    aSum += sumFactor * pa;
-
+  for (let y = 0; y < height; y++) {
     stack = stackStart;
 
-    for (i = 0; i < radiusPlus1; i++) {
+    const pr = pixels[yi],
+      pg = pixels[yi + 1],
+      pb = pixels[yi + 2],
+      pa = pixels[yi + 3];
+
+    for (let i = 0; i < radiusPlus1; i++) {
       stack.r = pr;
       stack.g = pg;
       stack.b = pb;
@@ -237,12 +226,31 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
       stack = stack.next;
     }
 
-    for (i = 1; i < radiusPlus1; i++) {
-      p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
-      rSum += (stack.r = (pr = pixels[p])) * (rbs = radiusPlus1 - i);
-      gSum += (stack.g = (pg = pixels[p + 1])) * rbs;
-      bSum += (stack.b = (pb = pixels[p + 2])) * rbs;
-      aSum += (stack.a = (pa = pixels[p + 3])) * rbs;
+    let rInSum = 0, gInSum = 0, bInSum = 0, aInSum = 0,
+      rOutSum = radiusPlus1 * pr,
+      gOutSum = radiusPlus1 * pg,
+      bOutSum = radiusPlus1 * pb,
+      aOutSum = radiusPlus1 * pa,
+      rSum = sumFactor * pr,
+      gSum = sumFactor * pg,
+      bSum = sumFactor * pb,
+      aSum = sumFactor * pa;
+
+    for (let i = 1; i < radiusPlus1; i++) {
+      const p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
+
+      /* eslint-disable no-shadow */
+      const pr = pixels[p],
+        pg = pixels[p + 1],
+        pb = pixels[p + 2],
+        pa = pixels[p + 3];
+      /* eslint-enable no-shadow */
+
+      const rbs = radiusPlus1 - i;
+      rSum += (stack.r = pr) * rbs;
+      gSum += (stack.g = pg) * rbs;
+      bSum += (stack.b = pb) * rbs;
+      aSum += (stack.a = pa) * rbs;
 
       rInSum += pr;
       gInSum += pg;
@@ -254,10 +262,11 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
 
     stackIn = stackStart;
     stackOut = stackEnd;
-    for (x = 0; x < width; x++) {
-      pixels[yi + 3] = pa = (aSum * mulSum) >> shgSum;
-      if (pa !== 0) {
-        pa = 255 / pa;
+    for (let x = 0; x < width; x++) {
+      const paInitial = (aSum * mulSum) >> shgSum;
+      pixels[yi + 3] = paInitial;
+      if (paInitial !== 0) {
+        const pa = 255 / paInitial;
         pixels[yi] = ((rSum * mulSum) >> shgSum) * pa;
         pixels[yi + 1] = ((gSum * mulSum) >> shgSum) * pa;
         pixels[yi + 2] = ((bSum * mulSum) >> shgSum) * pa;
@@ -275,7 +284,8 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
       bOutSum -= stackIn.b;
       aOutSum -= stackIn.a;
 
-      p = (yw + ((p = x + radius + 1) < widthMinus1
+      let p = x + radius + 1;
+      p = (yw + (p < widthMinus1
         ? p
         : widthMinus1)) << 2;
 
@@ -291,10 +301,19 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
 
       stackIn = stackIn.next;
 
-      rOutSum += (pr = stackOut.r);
-      gOutSum += (pg = stackOut.g);
-      bOutSum += (pb = stackOut.b);
-      aOutSum += (pa = stackOut.a);
+      /* eslint-disable no-shadow */
+      const {
+        r: pr,
+        g: pg,
+        b: pb,
+        a: pa
+      } = stackOut;
+      /* eslint-enable no-shadow */
+
+      rOutSum += pr;
+      gOutSum += pg;
+      bOutSum += pb;
+      aOutSum += pa;
 
       rInSum -= pr;
       gInSum -= pg;
@@ -308,23 +327,25 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
     yw += width;
   }
 
-  for (x = 0; x < width; x++) {
-    gInSum = bInSum = aInSum = rInSum = gSum = bSum = aSum = rSum = 0;
-
+  for (let x = 0; x < width; x++) {
     yi = x << 2;
-    rOutSum = radiusPlus1 * (pr = pixels[yi]);
-    gOutSum = radiusPlus1 * (pg = pixels[yi + 1]);
-    bOutSum = radiusPlus1 * (pb = pixels[yi + 2]);
-    aOutSum = radiusPlus1 * (pa = pixels[yi + 3]);
 
-    rSum += sumFactor * pr;
-    gSum += sumFactor * pg;
-    bSum += sumFactor * pb;
-    aSum += sumFactor * pa;
+    let pr = pixels[yi],
+      pg = pixels[yi + 1],
+      pb = pixels[yi + 2],
+      pa = pixels[yi + 3],
+      rOutSum = radiusPlus1 * pr,
+      gOutSum = radiusPlus1 * pg,
+      bOutSum = radiusPlus1 * pb,
+      aOutSum = radiusPlus1 * pa,
+      rSum = sumFactor * pr,
+      gSum = sumFactor * pg,
+      bSum = sumFactor * pb,
+      aSum = sumFactor * pa;
 
     stack = stackStart;
 
-    for (i = 0; i < radiusPlus1; i++) {
+    for (let i = 0; i < radiusPlus1; i++) {
       stack.r = pr;
       stack.g = pg;
       stack.b = pb;
@@ -332,12 +353,14 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
       stack = stack.next;
     }
 
-    yp = width;
+    let yp = width;
 
-    for (i = 1; i <= radius; i++) {
+    let gInSum = 0, bInSum = 0, aInSum = 0, rInSum = 0;
+    for (let i = 1; i <= radius; i++) {
       yi = (yp + x) << 2;
 
-      rSum += (stack.r = (pr = pixels[yi])) * (rbs = radiusPlus1 - i);
+      const rbs = radiusPlus1 - i;
+      rSum += (stack.r = (pr = pixels[yi])) * rbs;
       gSum += (stack.g = (pg = pixels[yi + 1])) * rbs;
       bSum += (stack.b = (pb = pixels[yi + 2])) * rbs;
       aSum += (stack.a = (pa = pixels[yi + 3])) * rbs;
@@ -357,8 +380,8 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
     yi = x;
     stackIn = stackStart;
     stackOut = stackEnd;
-    for (y = 0; y < height; y++) {
-      p = yi << 2;
+    for (let y = 0; y < height; y++) {
+      let p = yi << 2;
       pixels[p + 3] = pa = (aSum * mulSum) >> shgSum;
       if (pa > 0) {
         pa = 255 / pa;
@@ -442,11 +465,6 @@ function processCanvasRGB (canvas, topX, topY, width, height, radius) {
 function processImageDataRGB (imageData, topX, topY, width, height, radius) {
   const pixels = imageData.data;
 
-  let x, y, i, p, yp, yi, yw, rSum, gSum, bSum,
-    rOutSum, gOutSum, bOutSum,
-    rInSum, gInSum, bInSum,
-    pr, pg, pb, rbs;
-
   const div = 2 * radius + 1;
   // const w4 = width << 2;
   const widthMinus1 = width - 1;
@@ -457,7 +475,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
   const stackStart = new BlurStack();
   let stack = stackStart;
   let stackEnd;
-  for (i = 1; i < div; i++) {
+  for (let i = 1; i < div; i++) {
     stack = stack.next = new BlurStack();
     if (i === radiusPlus1) {
       stackEnd = stack;
@@ -467,32 +485,34 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
   let stackIn = null;
   let stackOut = null;
 
-  yw = yi = 0;
-
   const mulSum = mulTable[radius];
   const shgSum = shgTable[radius];
 
-  for (y = 0; y < height; y++) {
-    rInSum = gInSum = bInSum = rSum = gSum = bSum = 0;
+  let p, rbs;
+  let yw = 0, yi = 0;
 
-    rOutSum = radiusPlus1 * (pr = pixels[yi]);
-    gOutSum = radiusPlus1 * (pg = pixels[yi + 1]);
-    bOutSum = radiusPlus1 * (pb = pixels[yi + 2]);
-
-    rSum += sumFactor * pr;
-    gSum += sumFactor * pg;
-    bSum += sumFactor * pb;
+  for (let y = 0; y < height; y++) {
+    let pr = pixels[yi],
+      pg = pixels[yi + 1],
+      pb = pixels[yi + 2],
+      rOutSum = radiusPlus1 * pr,
+      gOutSum = radiusPlus1 * pg,
+      bOutSum = radiusPlus1 * pb,
+      rSum = sumFactor * pr,
+      gSum = sumFactor * pg,
+      bSum = sumFactor * pb;
 
     stack = stackStart;
 
-    for (i = 0; i < radiusPlus1; i++) {
+    for (let i = 0; i < radiusPlus1; i++) {
       stack.r = pr;
       stack.g = pg;
       stack.b = pb;
       stack = stack.next;
     }
 
-    for (i = 1; i < radiusPlus1; i++) {
+    let rInSum = 0, gInSum = 0, bInSum = 0;
+    for (let i = 1; i < radiusPlus1; i++) {
       p = yi + ((widthMinus1 < i ? widthMinus1 : i) << 2);
       rSum += (stack.r = (pr = pixels[p])) * (rbs = radiusPlus1 - i);
       gSum += (stack.g = (pg = pixels[p + 1])) * rbs;
@@ -507,7 +527,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
 
     stackIn = stackStart;
     stackOut = stackEnd;
-    for (x = 0; x < width; x++) {
+    for (let x = 0; x < width; x++) {
       pixels[yi] = (rSum * mulSum) >> shgSum;
       pixels[yi + 1] = (gSum * mulSum) >> shgSum;
       pixels[yi + 2] = (bSum * mulSum) >> shgSum;
@@ -549,30 +569,29 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
     yw += width;
   }
 
-  for (x = 0; x < width; x++) {
-    gInSum = bInSum = rInSum = gSum = bSum = rSum = 0;
-
+  for (let x = 0; x < width; x++) {
     yi = x << 2;
-    rOutSum = radiusPlus1 * (pr = pixels[yi]);
-    gOutSum = radiusPlus1 * (pg = pixels[yi + 1]);
-    bOutSum = radiusPlus1 * (pb = pixels[yi + 2]);
-
-    rSum += sumFactor * pr;
-    gSum += sumFactor * pg;
-    bSum += sumFactor * pb;
+    let pr = pixels[yi],
+      pg = pixels[yi + 1],
+      pb = pixels[yi + 2],
+      rOutSum = radiusPlus1 * pr,
+      gOutSum = radiusPlus1 * pg,
+      bOutSum = radiusPlus1 * pb,
+      rSum = sumFactor * pr,
+      gSum = sumFactor * pg,
+      bSum = sumFactor * pb;
 
     stack = stackStart;
 
-    for (i = 0; i < radiusPlus1; i++) {
+    for (let i = 0; i < radiusPlus1; i++) {
       stack.r = pr;
       stack.g = pg;
       stack.b = pb;
       stack = stack.next;
     }
 
-    yp = width;
-
-    for (i = 1; i <= radius; i++) {
+    let rInSum = 0, gInSum = 0, bInSum = 0;
+    for (let i = 1, yp = width; i <= radius; i++) {
       yi = (yp + x) << 2;
 
       rSum += (stack.r = (pr = pixels[yi])) * (rbs = radiusPlus1 - i);
@@ -593,7 +612,7 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
     yi = x;
     stackIn = stackStart;
     stackOut = stackEnd;
-    for (y = 0; y < height; y++) {
+    for (let y = 0; y < height; y++) {
       p = yi << 2;
       pixels[p] = (rSum * mulSum) >> shgSum;
       pixels[p + 1] = (gSum * mulSum) >> shgSum;
