@@ -72,10 +72,11 @@ var shgTable = [9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17, 1
  * @param {string|HTMLCanvasElement} canvas
  * @param {Float} radius
  * @param {boolean} blurAlphaChannel
+ * @param {boolean} useOffsetWidth
  * @returns {undefined}
  */
 
-function processImage(img, canvas, radius, blurAlphaChannel) {
+function processImage(img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
   if (typeof img === 'string') {
     img = document.getElementById(img);
   }
@@ -84,8 +85,9 @@ function processImage(img, canvas, radius, blurAlphaChannel) {
     return;
   }
 
-  var w = img.naturalWidth;
-  var h = img.naturalHeight;
+  var dimensionType = useOffsetWidth ? 'offset' : 'natural';
+  var w = img[dimensionType + 'Width'];
+  var h = img[dimensionType + 'Height'];
 
   if (typeof canvas === 'string') {
     canvas = document.getElementById(canvas);
@@ -101,7 +103,7 @@ function processImage(img, canvas, radius, blurAlphaChannel) {
   canvas.height = h;
   var context = canvas.getContext('2d');
   context.clearRect(0, 0, w, h);
-  context.drawImage(img, 0, 0);
+  context.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, w, h);
 
   if (isNaN(radius) || radius < 1) {
     return;

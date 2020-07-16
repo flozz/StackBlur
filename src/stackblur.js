@@ -84,17 +84,20 @@ const shgTable = [
  * @param {string|HTMLCanvasElement} canvas
  * @param {Float} radius
  * @param {boolean} blurAlphaChannel
+ * @param {boolean} useOffsetWidth
  * @returns {undefined}
  */
-function processImage (img, canvas, radius, blurAlphaChannel) {
+function processImage (img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
   if (typeof img === 'string') {
     img = document.getElementById(img);
   }
   if (!img || !('naturalWidth' in img)) {
     return;
   }
-  const w = img.naturalWidth;
-  const h = img.naturalHeight;
+
+  const dimensionType = useOffsetWidth ? 'offset' : 'natural';
+  const w = img[dimensionType + 'Width'];
+  const h = img[dimensionType + 'Height'];
 
   if (typeof canvas === 'string') {
     canvas = document.getElementById(canvas);
@@ -110,7 +113,7 @@ function processImage (img, canvas, radius, blurAlphaChannel) {
 
   const context = canvas.getContext('2d');
   context.clearRect(0, 0, w, h);
-  context.drawImage(img, 0, 0);
+  context.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, w, h);
 
   if (isNaN(radius) || radius < 1) { return; }
 
