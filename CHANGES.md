@@ -1,5 +1,12 @@
 # StackBlur CHANGES
 
+## 2.4.0
+
+- Enhancement (image): add useOffsetWidth option for scaled images
+- Refactoring: Move `let` to closer/deeper scope
+- Linting: As per latest ash-nazg (add or avoid need for disable comments)
+- npm: Update devDeps.
+
 ## 2.3.0
 
 - Build: Update build files per latest devDeps

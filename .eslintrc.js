@@ -38,6 +38,11 @@ module.exports = {
       'no-unused-vars': ['error', {varsIgnorePattern: 'StackBlur'}]
     }
   }, {
+    files: 'rollup.config.js',
+    env: {
+      node: true
+    }
+  }, {
     files: '.*.js',
     extends: ['plugin:node/recommended-script'],
     rules: {

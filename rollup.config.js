@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 import babel from '@rollup/plugin-babel';
 import {terser} from 'rollup-plugin-terser';
 
@@ -38,7 +36,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
   return nonMinified;
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
+// eslint-disable-next-line import/no-anonymous-default-export -- Rollup config
 export default [
   getRollupObject({minifying: false, format: 'umd'}),
   getRollupObject({minifying: false, format: 'es'}),
