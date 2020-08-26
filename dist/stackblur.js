@@ -78,10 +78,11 @@
    * @param {string|HTMLCanvasElement} canvas
    * @param {Float} radius
    * @param {boolean} blurAlphaChannel
+   * @param {boolean} useOffsetWidth
    * @returns {undefined}
    */
 
-  function processImage(img, canvas, radius, blurAlphaChannel) {
+  function processImage(img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
     if (typeof img === 'string') {
       img = document.getElementById(img);
     }
@@ -90,8 +91,9 @@
       return;
     }
 
-    var w = img.naturalWidth;
-    var h = img.naturalHeight;
+    var dimensionType = useOffsetWidth ? 'offset' : 'natural';
+    var w = img[dimensionType + 'Width'];
+    var h = img[dimensionType + 'Height'];
 
     if (typeof canvas === 'string') {
       canvas = document.getElementById(canvas);
@@ -107,7 +109,7 @@
     canvas.height = h;
     var context = canvas.getContext('2d');
     context.clearRect(0, 0, w, h);
-    context.drawImage(img, 0, 0);
+    context.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, w, h);
 
     if (isNaN(radius) || radius < 1) {
       return;

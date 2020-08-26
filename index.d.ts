@@ -10,7 +10,8 @@ export function image(
   img: HTMLImageElement | string,
   canvas: HTMLCanvasElement | string,
   radius: number,
-  blurAlphaChannel?: boolean
+  blurAlphaChannel?: boolean,
+  useOffsetWidth?: boolean,
 ): void;
 
 export function canvasRGBA(
