@@ -85,10 +85,11 @@ const shgTable = [
  * @param {string|HTMLCanvasElement} canvas
  * @param {Float} radius
  * @param {boolean} blurAlphaChannel
- * @param {boolean} useOffsetWidth
+ * @param {boolean} useOffset
+ * @param {boolean} skipStyles
  * @returns {undefined}
  */
-function processImage (img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
+function processImage (img, canvas, radius, blurAlphaChannel, useOffset, skipStyles) {
   if (typeof img === 'string') {
     img = document.getElementById(img);
   }
@@ -96,7 +97,7 @@ function processImage (img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
     return;
   }
 
-  const dimensionType = useOffsetWidth ? 'offset' : 'natural';
+  const dimensionType = useOffset ? 'offset' : 'natural';
   const w = img[dimensionType + 'Width'];
   const h = img[dimensionType + 'Height'];
 
@@ -107,8 +108,10 @@ function processImage (img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
     return;
   }
 
-  canvas.style.width = w + 'px';
-  canvas.style.height = h + 'px';
+  if (!skipStyles) {
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+  }
   canvas.width = w;
   canvas.height = h;
 

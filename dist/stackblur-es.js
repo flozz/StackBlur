@@ -71,11 +71,12 @@ var shgTable = [9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17, 1
  * @param {string|HTMLCanvasElement} canvas
  * @param {Float} radius
  * @param {boolean} blurAlphaChannel
- * @param {boolean} useOffsetWidth
+ * @param {boolean} useOffset
+ * @param {boolean} skipStyles
  * @returns {undefined}
  */
 
-function processImage(img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
+function processImage(img, canvas, radius, blurAlphaChannel, useOffset, skipStyles) {
   if (typeof img === 'string') {
     img = document.getElementById(img);
   }
@@ -84,7 +85,7 @@ function processImage(img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
     return;
   }
 
-  var dimensionType = useOffsetWidth ? 'offset' : 'natural';
+  var dimensionType = useOffset ? 'offset' : 'natural';
   var w = img[dimensionType + 'Width'];
   var h = img[dimensionType + 'Height'];
 
@@ -96,8 +97,11 @@ function processImage(img, canvas, radius, blurAlphaChannel, useOffsetWidth) {
     return;
   }
 
-  canvas.style.width = w + 'px';
-  canvas.style.height = h + 'px';
+  if (!skipStyles) {
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+  }
+
   canvas.width = w;
   canvas.height = h;
   var context = canvas.getContext('2d');
