@@ -1,6 +1,6 @@
 demo
 
-yarn.lock
+pnpm-lock.yaml
 rollup.config.js
 .ncurc.js
 lgtm.yml

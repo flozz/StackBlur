@@ -1,5 +1,18 @@
 # StackBlur CHANGES
 
+## 2.5.0
+
+- Enhancement: boolean arg to skip setting canvas styles (@LukeeeeBennett)
+- Build: As per latest devDeps.
+- Docs: Update API docs as per latest
+
+**Dev-facing:**
+
+- Linting: As per ash-nazg
+- npm: Switch to server without reported vulnerabilities
+- npm: Switch to pnpm lock
+- npm: Update devDeps (and switch to new ash-nazg peerDeps)
+
 ## 2.4.0
 
 - Enhancement (image): add useOffsetWidth option for scaled images
