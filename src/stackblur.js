@@ -95,13 +95,21 @@ function processImage (
   if (typeof img === 'string') {
     img = document.getElementById(img);
   }
-  if (!img || !('naturalWidth' in img)) {
+  
+  // FIXED: JC change the attr condition better
+  if (img instanceof HTMLImageElement && !('naturalWidth' in img)) {
     return;
-  }
+  } 
 
   const dimensionType = useOffset ? 'offset' : 'natural';
   const w = img[dimensionType + 'Width'];
   const h = img[dimensionType + 'Height'];
+    
+  // FIXED: JC add ImageBitmap support,can blur texture source
+  if (img instanceof ImageBitmap) {
+    w = img.width;
+    h = img.height;
+  }
 
   if (typeof canvas === 'string') {
     canvas = document.getElementById(canvas);
