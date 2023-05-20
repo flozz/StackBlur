@@ -97,7 +97,7 @@ function processImage (
   }
   
   // FIXED: JC change the attr condition better
-  if (img instanceof HTMLImageElement && !('naturalWidth' in img)) {
+  if (Object.prototype.toString.call(img).slice(8, -1) === 'HTMLImageElement' && !('naturalWidth' in img)) {
     return;
   } 
 
@@ -106,7 +106,7 @@ function processImage (
   const h = img[dimensionType + 'Height'];
     
   // FIXED: JC add ImageBitmap support,can blur texture source
-  if (img instanceof ImageBitmap) {
+  if (Object.prototype.toString.call(img).slice(8, -1) === 'ImageBitmap') {
     w = img.width;
     h = img.height;
   }
