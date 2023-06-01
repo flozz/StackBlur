@@ -95,8 +95,7 @@ function processImage (
   if (typeof img === 'string') {
     img = document.getElementById(img);
   }
-  
-  // FIXED: JC change condition
+
   if (!img || (Object.prototype.toString.call(img).slice(8, -1) === 'HTMLImageElement' && !('naturalWidth' in img))) {
     return;
   } 
@@ -105,7 +104,7 @@ function processImage (
   const w = img[dimensionType + 'Width'];
   const h = img[dimensionType + 'Height'];
     
-  // FIXED: JC add ImageBitmap support,can blur texture source
+  // add ImageBitmap support,can blur texture source
   if (Object.prototype.toString.call(img).slice(8, -1) === 'ImageBitmap') {
     w = img.width;
     h = img.height;
