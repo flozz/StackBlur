@@ -91,13 +91,13 @@ const shgTable = [
  */
 function processImage (
   img, canvas, radius, blurAlphaChannel, useOffset, skipStyles
-) {
+) {  
   if (typeof img === 'string') {
     img = document.getElementById(img);
   }
   
-  // FIXED: JC change the attr condition better
-  if (Object.prototype.toString.call(img).slice(8, -1) === 'HTMLImageElement' && !('naturalWidth' in img)) {
+  // FIXED: JC change condition
+  if (!img || (Object.prototype.toString.call(img).slice(8, -1) === 'HTMLImageElement' && !('naturalWidth' in img))) {
     return;
   } 
 
