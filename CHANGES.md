@@ -1,5 +1,9 @@
 # StackBlur CHANGES
 
+## 2.6.0
+
+- feat: ImageBitmap support (@Jason11Q)
+
 ## 2.5.0
 
 - Enhancement: boolean arg to skip setting canvas styles (@LukeeeeBennett)
