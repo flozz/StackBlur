@@ -95,13 +95,20 @@ function processImage (
   if (typeof img === 'string') {
     img = document.getElementById(img);
   }
-  if (!img || !('naturalWidth' in img)) {
+
+  if (!img || (Object.prototype.toString.call(img).slice(8, -1) === 'HTMLImageElement' && !('naturalWidth' in img))) {
     return;
   }
 
   const dimensionType = useOffset ? 'offset' : 'natural';
   const w = img[dimensionType + 'Width'];
   const h = img[dimensionType + 'Height'];
+    
+  // add ImageBitmap support,can blur texture source
+  if (Object.prototype.toString.call(img).slice(8, -1) === 'ImageBitmap') {
+    w = img.width;
+    h = img.height;
+  }
 
   if (typeof canvas === 'string') {
     canvas = document.getElementById(canvas);
