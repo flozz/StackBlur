@@ -121,7 +121,7 @@ packages:
       debug: 4.3.1
       gensync: 1.0.0-beta.2
       json5: 2.2.0
-      lodash: 4.17.20
+      lodash: 4.17.21
       semver: 5.7.1
       source-map: 0.5.7
     transitivePeerDependencies:
@@ -235,7 +235,7 @@ packages:
       '@babel/template': 7.12.13
       '@babel/traverse': 7.12.13
       '@babel/types': 7.12.13
-      lodash: 4.17.20
+      lodash: 4.17.21
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1022,7 +1022,7 @@ packages:
       '@babel/types': 7.12.13
       debug: 4.3.1
       globals: 11.12.0
-      lodash: 4.17.20
+      lodash: 4.17.21
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1031,7 +1031,7 @@ packages:
     resolution: {integrity: sha512-oKrdZTld2im1z8bDwTOQvUbxKwE+854zc16qWZQlcTqMN00pWxHQ4ZeOq0yDMnisOpRykH2/5Qqcrk/OlbAjiQ==}
     dependencies:
       '@babel/helper-validator-identifier': 7.12.11
-      lodash: 4.17.20
+      lodash: 4.17.21
       to-fast-properties: 2.0.0
     dev: true
 
@@ -1055,7 +1055,7 @@ packages:
       ignore: 4.0.6
       import-fresh: 3.3.0
       js-yaml: 3.14.1
-      lodash: 4.17.20
+      lodash: 4.17.21
       minimatch: 3.0.4
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -1235,7 +1235,7 @@ packages:
   /async@2.6.3:
     resolution: {integrity: sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==}
     dependencies:
-      lodash: 4.17.20
+      lodash: 4.17.21
     dev: true
 
   /babel-eslint@10.1.0(eslint@7.20.0):
@@ -1336,7 +1336,7 @@ packages:
     resolution: {integrity: sha512-a+xUyMV7hD1BrDQA/3iPV7oc+6W26BgVJO05PGEoatMyIuPScQKsde6i3YorWX1qs+AZjnJ18NqdKoCtKiNh1g==}
     engines: {node: '>= 8'}
     dependencies:
-      lodash: 4.17.20
+      lodash: 4.17.21
     dev: true
 
   /chalk@2.4.2:
@@ -1837,7 +1837,7 @@ packages:
       debug: 4.3.1
       eslint: 7.20.0
       jsdoctypeparser: 9.0.0
-      lodash: 4.17.20
+      lodash: 4.17.21
       regextras: 0.7.1
       semver: 7.3.4
       spdx-expression-parse: 3.0.1
@@ -1924,7 +1924,7 @@ packages:
       eslint-utils: 2.1.0
       eslint-visitor-keys: 2.0.0
       import-modules: 2.1.0
-      lodash: 4.17.20
+      lodash: 4.17.21
       pluralize: 8.0.0
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.23
@@ -2004,7 +2004,7 @@ packages:
       js-yaml: 3.14.1
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
-      lodash: 4.17.20
+      lodash: 4.17.21
       minimatch: 3.0.4
       natural-compare: 1.4.0
       optionator: 0.9.1
@@ -2661,8 +2661,8 @@ packages:
     resolution: {integrity: sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=}
     dev: true
 
-  /lodash@4.17.20:
-    resolution: {integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==}
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
   /lowercase-keys@1.0.1:
@@ -3236,7 +3236,7 @@ packages:
   /requizzle@0.2.3:
     resolution: {integrity: sha512-YanoyJjykPxGHii0fZP0uUPEXpvqfBDxWV7s6GKAiiOsiqhX6vHNyW3Qzdmqp/iq/ExbhaGbVrjB4ruEVSM4GQ==}
     dependencies:
-      lodash: 4.17.20
+      lodash: 4.17.21
     dev: true
 
   /reserved-words@0.1.2:
@@ -3504,7 +3504,7 @@ packages:
     engines: {node: '>=10.0.0'}
     dependencies:
       ajv: 7.1.0
-      lodash: 4.17.20
+      lodash: 4.17.21
       slice-ansi: 4.0.0
       string-width: 4.2.0
     dev: true
