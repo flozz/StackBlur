@@ -20,10 +20,6 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-function _readOnlyError(name) {
-  throw new TypeError("\"" + name + "\" is read-only");
-}
-
 /* eslint-disable no-bitwise -- used for calculations */
 
 /* eslint-disable unicorn/prefer-query-selector -- aiming at
@@ -94,8 +90,8 @@ function processImage(img, canvas, radius, blurAlphaChannel, useOffset, skipStyl
   var h = img[dimensionType + 'Height']; // add ImageBitmap support,can blur texture source
 
   if (Object.prototype.toString.call(img).slice(8, -1) === 'ImageBitmap') {
-    w = (_readOnlyError("w"), img.width);
-    h = (_readOnlyError("h"), img.height);
+    w = img.width;
+    h = img.height;
   }
 
   if (typeof canvas === 'string') {

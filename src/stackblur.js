@@ -101,8 +101,8 @@ function processImage (
   }
 
   const dimensionType = useOffset ? 'offset' : 'natural';
-  const w = img[dimensionType + 'Width'];
-  const h = img[dimensionType + 'Height'];
+  let w = img[dimensionType + 'Width'];
+  let h = img[dimensionType + 'Height'];
 
   // add ImageBitmap support,can blur texture source
   if (Object.prototype.toString.call(img).slice(8, -1) === 'ImageBitmap') {
