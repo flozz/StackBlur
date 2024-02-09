@@ -1,5 +1,10 @@
 # StackBlur CHANGES
 
+## 2.7.0
+
+- fix: use unsigned right shift to fix blur radius larger than 180 #59 (@kayahr)
+- chore: update build files (@kayahr)
+
 ## 2.6.0
 
 - feat: ImageBitmap support (@Jason11Q)
