@@ -96,7 +96,11 @@ function processImage (
     img = document.getElementById(img);
   }
 
-  if (!img || (Object.prototype.toString.call(img).slice(8, -1) === 'HTMLImageElement' && !('naturalWidth' in img))) {
+  if (
+    !img ||
+    (Object.prototype.toString.call(img).slice(8, -1) ===
+      'HTMLImageElement' && !('naturalWidth' in img))
+  ) {
     return;
   }
 
