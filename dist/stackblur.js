@@ -87,13 +87,18 @@
       img = document.getElementById(img);
     }
 
-    if (!img || !('naturalWidth' in img)) {
+    if (!img || Object.prototype.toString.call(img).slice(8, -1) === 'HTMLImageElement' && !('naturalWidth' in img)) {
       return;
     }
 
     var dimensionType = useOffset ? 'offset' : 'natural';
     var w = img[dimensionType + 'Width'];
-    var h = img[dimensionType + 'Height'];
+    var h = img[dimensionType + 'Height']; // add ImageBitmap support,can blur texture source
+
+    if (Object.prototype.toString.call(img).slice(8, -1) === 'ImageBitmap') {
+      w = img.width;
+      h = img.height;
+    }
 
     if (typeof canvas === 'string') {
       canvas = document.getElementById(canvas);
@@ -262,15 +267,15 @@
       stackOut = stackEnd;
 
       for (var x = 0; x < width; x++) {
-        var paInitial = aSum * mulSum >> shgSum;
+        var paInitial = aSum * mulSum >>> shgSum;
         pixels[yi + 3] = paInitial;
 
         if (paInitial !== 0) {
           var _a2 = 255 / paInitial;
 
-          pixels[yi] = (rSum * mulSum >> shgSum) * _a2;
-          pixels[yi + 1] = (gSum * mulSum >> shgSum) * _a2;
-          pixels[yi + 2] = (bSum * mulSum >> shgSum) * _a2;
+          pixels[yi] = (rSum * mulSum >>> shgSum) * _a2;
+          pixels[yi + 1] = (gSum * mulSum >>> shgSum) * _a2;
+          pixels[yi + 2] = (bSum * mulSum >>> shgSum) * _a2;
         } else {
           pixels[yi] = pixels[yi + 1] = pixels[yi + 2] = 0;
         }
@@ -375,13 +380,13 @@
       for (var _y = 0; _y < height; _y++) {
         var _p2 = yi << 2;
 
-        pixels[_p2 + 3] = _pa = _aSum * mulSum >> shgSum;
+        pixels[_p2 + 3] = _pa = _aSum * mulSum >>> shgSum;
 
         if (_pa > 0) {
           _pa = 255 / _pa;
-          pixels[_p2] = (_rSum * mulSum >> shgSum) * _pa;
-          pixels[_p2 + 1] = (_gSum * mulSum >> shgSum) * _pa;
-          pixels[_p2 + 2] = (_bSum * mulSum >> shgSum) * _pa;
+          pixels[_p2] = (_rSum * mulSum >>> shgSum) * _pa;
+          pixels[_p2 + 1] = (_gSum * mulSum >>> shgSum) * _pa;
+          pixels[_p2 + 2] = (_bSum * mulSum >>> shgSum) * _pa;
         } else {
           pixels[_p2] = pixels[_p2 + 1] = pixels[_p2 + 2] = 0;
         }
@@ -514,9 +519,9 @@
       stackOut = stackEnd;
 
       for (var x = 0; x < width; x++) {
-        pixels[yi] = rSum * mulSum >> shgSum;
-        pixels[yi + 1] = gSum * mulSum >> shgSum;
-        pixels[yi + 2] = bSum * mulSum >> shgSum;
+        pixels[yi] = rSum * mulSum >>> shgSum;
+        pixels[yi + 1] = gSum * mulSum >>> shgSum;
+        pixels[yi + 2] = bSum * mulSum >>> shgSum;
         rSum -= rOutSum;
         gSum -= gOutSum;
         bSum -= bOutSum;
@@ -591,9 +596,9 @@
 
       for (var _y2 = 0; _y2 < height; _y2++) {
         p = yi << 2;
-        pixels[p] = _rSum2 * mulSum >> shgSum;
-        pixels[p + 1] = _gSum2 * mulSum >> shgSum;
-        pixels[p + 2] = _bSum2 * mulSum >> shgSum;
+        pixels[p] = _rSum2 * mulSum >>> shgSum;
+        pixels[p + 1] = _gSum2 * mulSum >>> shgSum;
+        pixels[p + 2] = _bSum2 * mulSum >>> shgSum;
         _rSum2 -= _rOutSum2;
         _gSum2 -= _gOutSum2;
         _bSum2 -= _bOutSum2;

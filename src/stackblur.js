@@ -101,9 +101,9 @@ function processImage (
   }
 
   const dimensionType = useOffset ? 'offset' : 'natural';
-  const w = img[dimensionType + 'Width'];
-  const h = img[dimensionType + 'Height'];
-    
+  let w = img[dimensionType + 'Width'];
+  let h = img[dimensionType + 'Height'];
+
   // add ImageBitmap support,can blur texture source
   if (Object.prototype.toString.call(img).slice(8, -1) === 'ImageBitmap') {
     w = img.width;
@@ -277,13 +277,13 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
     stackIn = stackStart;
     stackOut = stackEnd;
     for (let x = 0; x < width; x++) {
-      const paInitial = (aSum * mulSum) >> shgSum;
+      const paInitial = (aSum * mulSum) >>> shgSum;
       pixels[yi + 3] = paInitial;
       if (paInitial !== 0) {
         const a = 255 / paInitial;
-        pixels[yi] = ((rSum * mulSum) >> shgSum) * a;
-        pixels[yi + 1] = ((gSum * mulSum) >> shgSum) * a;
-        pixels[yi + 2] = ((bSum * mulSum) >> shgSum) * a;
+        pixels[yi] = ((rSum * mulSum) >>> shgSum) * a;
+        pixels[yi + 1] = ((gSum * mulSum) >>> shgSum) * a;
+        pixels[yi + 2] = ((bSum * mulSum) >>> shgSum) * a;
       } else {
         pixels[yi] = pixels[yi + 1] = pixels[yi + 2] = 0;
       }
@@ -389,12 +389,12 @@ function processImageDataRGBA (imageData, topX, topY, width, height, radius) {
     stackOut = stackEnd;
     for (let y = 0; y < height; y++) {
       let p = yi << 2;
-      pixels[p + 3] = pa = (aSum * mulSum) >> shgSum;
+      pixels[p + 3] = pa = (aSum * mulSum) >>> shgSum;
       if (pa > 0) {
         pa = 255 / pa;
-        pixels[p] = ((rSum * mulSum) >> shgSum) * pa;
-        pixels[p + 1] = ((gSum * mulSum) >> shgSum) * pa;
-        pixels[p + 2] = ((bSum * mulSum) >> shgSum) * pa;
+        pixels[p] = ((rSum * mulSum) >>> shgSum) * pa;
+        pixels[p + 1] = ((gSum * mulSum) >>> shgSum) * pa;
+        pixels[p + 2] = ((bSum * mulSum) >>> shgSum) * pa;
       } else {
         pixels[p] = pixels[p + 1] = pixels[p + 2] = 0;
       }
@@ -535,9 +535,9 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
     stackIn = stackStart;
     stackOut = stackEnd;
     for (let x = 0; x < width; x++) {
-      pixels[yi] = (rSum * mulSum) >> shgSum;
-      pixels[yi + 1] = (gSum * mulSum) >> shgSum;
-      pixels[yi + 2] = (bSum * mulSum) >> shgSum;
+      pixels[yi] = (rSum * mulSum) >>> shgSum;
+      pixels[yi + 1] = (gSum * mulSum) >>> shgSum;
+      pixels[yi + 2] = (bSum * mulSum) >>> shgSum;
 
       rSum -= rOutSum;
       gSum -= gOutSum;
@@ -621,9 +621,9 @@ function processImageDataRGB (imageData, topX, topY, width, height, radius) {
     stackOut = stackEnd;
     for (let y = 0; y < height; y++) {
       p = yi << 2;
-      pixels[p] = (rSum * mulSum) >> shgSum;
-      pixels[p + 1] = (gSum * mulSum) >> shgSum;
-      pixels[p + 2] = (bSum * mulSum) >> shgSum;
+      pixels[p] = (rSum * mulSum) >>> shgSum;
+      pixels[p + 1] = (gSum * mulSum) >>> shgSum;
+      pixels[p + 2] = (bSum * mulSum) >>> shgSum;
 
       rSum -= rOutSum;
       gSum -= gOutSum;
