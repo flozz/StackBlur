@@ -63,7 +63,7 @@
     "http-server": "^0.12.3",
     "jsdoc": "^3.6.5",
     "open-cli": "^6.0.1",
-    "rollup": "2.39.0",
+    "rollup": "3.29.5",
     "rollup-plugin-re": "^1.0.7",
     "rollup-plugin-terser": "^7.0.2"
   },
